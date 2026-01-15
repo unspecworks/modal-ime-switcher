@@ -38,15 +38,6 @@ jobs:
       - name: Package extension
         run: vsce package
 
-      - name: Extract version from tag
-        id: version
-        run: |
-          if [ "${{ github.ref_type }}" = "tag" ]; then
-            echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
-          else
-            echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
-          fi
-
       - name: Publish to Open VSX
         run: ovsx publish *.vsix -p $OVSX_PAT
         env:
