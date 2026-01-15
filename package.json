@@ -1,0 +1,69 @@
+{
+  "name": "modal-ime-switcher",
+  "displayName": "modal-ime-switcher",
+  "description": "Automatically switch IME based on VS Code Modal Editor (Vim/Helix) Cursor Styles.",
+  "version": "0.0.1",
+  "publisher": "unspecworks",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.104.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Modal IME Switcher",
+      "properties": {
+        "modalImeSwitcher.imSelectBinary": {
+          "type": "string",
+          "default": "im-select",
+          "description": "Path to the im-select binary."
+        },
+        "modalImeSwitcher.normalModeIme": {
+            "type": "string",
+            "default": "",
+            "description": "IME ID to switch to when in Normal Mode (e.g., com.apple.keylayout.ABC)."
+        },
+        "modalImeSwitcher.normalModeCursorStyles": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "block",
+                    "block-outline",
+                    "line",
+                    "line-thin",
+                    "underline",
+                    "underline-thin"
+                ]
+            },
+            "default": ["block"],
+            "description": "List of cursor styles that indicate Normal Mode."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.108.1",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.52.0",
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
