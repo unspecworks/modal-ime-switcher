@@ -38,10 +38,10 @@ jobs:
       - name: Package extension
         run: vsce package
 
-      - name: Publish to Open VSX
-        run: ovsx publish *.vsix -p $OVSX_PAT
-        env:
-          OVSX_PAT: ${{ secrets.OVSX_TOKEN }}
+     # - name: Publish to Open VSX
+     #   run: ovsx publish *.vsix -p $OVSX_PAT
+     #   env:
+     #     OVSX_PAT: ${{ secrets.OVSX_TOKEN }}
 
       - name: Create GitHub Release
         if: github.ref_type == 'tag'
